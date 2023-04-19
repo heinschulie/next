@@ -19,7 +19,7 @@
 <svelte:head>
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
-	<!-- <script>
+	<script>
 		window.dataLayer = window.dataLayer || []
 
 		function gtag() {
@@ -30,7 +30,7 @@
 		gtag('config', 'GTM-M644WT5', {
 			page_path: window.location.pathname
 		})
-	</script> -->
+	</script>
 
 	<title>{ title }</title>
 	<meta property="og:determiner" content="The">
