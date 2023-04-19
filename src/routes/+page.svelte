@@ -1,59 +1,236 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts">
+
+	import type { PageServerData } from './$types';
+	
+	import Button from '$lib/components/Button/+page.svelte';
+	import Panel from '$lib/components/Panel/+page.svelte';
+	import Silo from '$lib/components/Silo/+page.svelte';
+
+	import Card from '$lib/components/Card/+page.svelte';
+	import IntersectionObserver from '$lib/components/IntersectionObserver/+page.svelte';
+	
+	// Note: --> the use of fade caused a pretty sinister routing bug that would place the 
+	// new pages html below the current pages html. Also seemed to have a 'stacking' effect
+	// where the further down in the page the link was (and therefore behind more 'transitions')
+	// the worse the lag 
+	import { fade } from "svelte/transition";
+	
+	import ResponsiveVideo from '$lib/components/ResponsiveVideo/+page.svelte';
+	import Modal from '$lib/components/Modal/+page.svelte';
+
+	export let data: PageServerData;  
+  	let fadeInMs = 800;
+	
+	let node1: any;
+	let node2: any;
+	let node3: any;
+	let node4: any;
+
+	let intersecting1 = false;
+	let intersecting2 = false;
+	let intersecting3 = false;
+	let intersecting4 = false;
+
+	$: dynamicColor1 = "var(--color-background)";
+	$: dynamicColor2 = "var(--color-background)";
+	$: dynamicColor3 = "var(--color-background)";
+	$: dynamicColor4 = "var(--color-background)";
+
+	let showVideo = false;
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>BrightRock | The needs-matched money company | Home</title>
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
+<Panel>
+	<h1 class="heading">Welcome to BrightRock, the <em>needs-matched</em> money company</h1>
+	<p>When you think about your money, you’re actually thinking about your life. About the people you love and the things you want to do. And about life’s big Change Moments – like when you land that job, make a home, tie the knot or start a family.</p>
+	<p>At BrightRock, we want to help you make money decisions that reflect your life, your changing needs, and all the things that are really important to you.</p>
+	<Button href="/about">Our story so far</Button>
+
+		<!-- <ResponsiveVideo 
+		slot="illustration" 
+		src="https://res.cloudinary.com/brightrock/video/upload/v1662993070/corporate_site/welcome_tkgilv.mp4" 
+		placeholder="https://res.cloudinary.com/iamme/image/upload/v1653891902/brightrock/IndividualLife_placeholder2.jpg" 
+		aspect_ratio={0.75} 
+		range={220} 
+		on:colorMatched={(evt) => dynamicColor1 = evt.detail} /> -->
+
+		<button slot="illustration" class="picture-set video" on:click={() => showVideo = true}>
 			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
+				<source srcset="https://res.cloudinary.com/brightrock/image/upload/v1665382912/cxc/CXC_illustrations_for_new_NMMC_mbfgkn.webp" type="image/webp" />
+				<img src="https://res.cloudinary.com/brightrock/image/upload/v1665382912/cxc/CXC_illustrations_for_new_NMMC_mbfgkn.png" alt="Graph showing cover gains." />
 			</picture>
-		</span>
+		</button>
 
-		to your new<br />SvelteKit app
-	</h1>
+</Panel>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+{#if showVideo}
+<button class="modal" on:click={() => showVideo = false}>
+	<iframe src="https://www.youtube.com/embed/N5w0W1Dvw7s?controls=0&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</button>
+{/if}
 
-	<Counter />
-</section>
+<IntersectionObserver 
+	element={node1} 
+	on:intersect={ (e) => intersecting1 = true }>
+	<section bind:this={node1} class="silo_container" style="background-color: hsla(300, 4%, 95%, 1);">
+		<h1 class="centered heading">What we offer</h1>
+		<p class="centered">Our needs-matched financial services products can precisely match your needs, through every step of your personal money journey.</p>
+		
+		{#if intersecting1}
+		<div class="columns">
+			<Silo>
+				<span slot="illustration">
+					<div class="picture-set no_min_height">
+						<!-- <video loading="lazy" autoplay loop muted playsinline>
+							<source src="https://res.cloudinary.com/iamme/image/upload/v1652424988/brightrock/WhatWeOffer_IndividualLife.mp4" type="video/mp4" >
+						</video> -->
+
+						<video autoplay loop muted playsinline>
+							<source src="https://res.cloudinary.com/brightrock/image/upload/v1662993920/corporate_site/WhatWeOffer_IndividualLife_vl9iyp.mp4" type="video/mp4" >
+						</video>
+						
+					</div>
+				</span>
+				<span slot="heading">
+					<h2 class="subheading">Individual life cover</h2>
+				</span>
+				<span slot="copy">
+					<p>Our needs-matched life insurance is a world first. It’s made just for you at the start, and changes as your life changes, giving you the protection you need every step of the way. And it gives you more cover for your money: You can get up to 40% more cover for the same premium.</p>
+				</span>
+				<span slot="button">
+					<Button href="/individual-life-cover" backgroundColor="var(--green)"></Button>
+				</span>
+			</Silo>
+			<Silo>
+				<span slot="illustration">
+					<div class="picture-set no_min_height">
+						<video autoplay loop muted playsinline >
+							<source src="https://res.cloudinary.com/brightrock/video/upload/v1662993071/corporate_site/WhatWeOffer_GroupRisk_dyibcu.mp4" type="video/mp4" >
+						</video>
+					</div>
+				</span>
+				<span slot="heading">
+					<h2 class="subheading">Group risk cover</h2>
+				</span>
+				<span slot="copy">
+					<p>Our unique group risk cover offers employers a unique insurance solution that keeps up with members’ changing financial needs. Members get unrivalled claims certainty with the most objective, comprehensive claims definitions. And their cover’s more flexible too.</p>
+				</span>
+				<span slot="button">
+					<Button href="/group-risk-cover"></Button>
+				</span>
+			</Silo>
+			<Silo>
+				<span slot="illustration">
+					<div class="picture-set no_min_height">
+						<video autoplay loop muted playsinline >
+							<source src="https://res.cloudinary.com/brightrock/image/upload/v1662994129/corporate_site/WhatWeOffer_Funeral_edkoqw.mp4" type="video/mp4" >
+						</video>
+					</div>
+				</span>
+				<span slot="heading">
+					<h2 class="subheading">Funeral offering</h2>
+				</span>
+				<span slot="copy">
+					<p>We partner with large funeral parlours to meet all their underwriting, and compliance needs. We pride ourselves on our needs-matched service offering, which provides each parlour a hands-on, personal experience.</p>
+				</span>
+				<span slot="button">
+					<Button href="/funeral-offering" backgroundColor="var(--dark-amber)"></Button>
+				</span>
+			</Silo>
+		</div>
+		{/if}
+	</section>
+</IntersectionObserver>
+
+<IntersectionObserver 
+	element={node2} 
+	on:intersect={ (e) => intersecting2 = true }>
+	<Panel backgroundColor={ dynamicColor2 }>
+		<!-- <div bind:this={node2} class="picture-set no_min_height" style="max-width: 100vw;">
+			{#if intersecting2}
+			<ResponsiveVideo slot="illustration" src="https://res.cloudinary.com/iamme/image/upload/v1652424773/brightrock/TheChangeExchange_Page.mp4" placeholder="https://res.cloudinary.com/iamme/image/upload/v1653891902/brightrock/IndividualLife_placeholder2.jpg" aspect_ratio={.35} range={220} on:colorMatched={(evt) => dynamicColor2 = evt.detail} />
+			{/if}
+		</div> -->
+		<h1 bind:this={node2} class="heading">The Change Exchange</h1>
+		<h2 class="subheading">Tips and tools to help you navigate life’s big Change Moments.</h2>
+		<p>We're here to help you with life's biggest Change Moments. How? By sharing other people's inspiring change stories, helpful tools and apps, and expert opinions that matter.</p>
+		<Button href="https://changeexchange.co.za">Go to the Change Exchange</Button>
+
+		<picture slot="illustration">
+			<source srcset="https://res.cloudinary.com/brightrock/image/upload/v1662993836/corporate_site/CXC_illustrations_for_new_sections-03_bqxhcs.webp" type="image/webp" />
+			<img loading="lazy" src="https://res.cloudinary.com/brightrock/image/upload/v1662993836/corporate_site/CXC_illustrations_for_new_sections-03_bqxhcs.png" alt="Family standing at the crossroads" />
+		</picture> 
+	</Panel>
+</IntersectionObserver>
+
+<IntersectionObserver 
+	element={node3} 
+	on:intersect={ (e) => intersecting3 = true }>
+	<Panel backgroundColor={ dynamicColor3 }>
+		<h1 bind:this={node3} class="heading">BrightRock partnerships</h1>
+		<p>At BrightRock, we’re all about loving Change and playing the bounce. Whether it’s on the rugby ﬁeld, in broadcast and digital spaces, or even around the dinner table – we’re ready to support, recognise and embrace change.</p>
+		<Button href="/rugby-partnerships"></Button>
+		
+		<span slot="illustration">
+			{#if intersecting3}
+			<ResponsiveVideo src="https://res.cloudinary.com/brightrock/video/upload/v1662994209/corporate_site/BrightRock_Sponsorships_tnshoh.mp4" placeholder="https://res.cloudinary.com/iamme/image/upload/v1653891902/brightrock/IndividualLife_placeholder2.jpg" aspect_ratio={1.4} range={220} on:colorMatched={(evt) => dynamicColor3 = evt.detail} />
+			{/if}
+		</span>	
+	</Panel>
+</IntersectionObserver>
+
+<IntersectionObserver 
+	element={node4} 
+	on:intersect={ (e) => intersecting4 = true }>
+	<div bind:this={node4} class="padded">
+		<h1 class="heading">Media centre</h1>
+		<p>Because we #LoveChange, BrightRock aims to change the financial services industry for good. To see what’s new in our business and our industry, read the latest BrightRock media coverage and press releases below:</p>
+		<Button href="/media-centre"></Button>
+		{#if intersecting4}
+		<div class="grid">
+			{#each data.posts.slice(0,4) as post}
+				<Card { ...post } href={ `/media-centre/${post.slug}`} buttonCopy="Read now" />
+			{/each}
+		</div>
+		{/if}
+	</div>
+</IntersectionObserver>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
+
+	.video:hover {
+		cursor: pointer;
+	}
+	iframe{
+		/* --width: 100%; */
+		/* min-width: 560px; */
+		aspect-ratio: 16 / 9;
+		/* height: 100%; */
+		width: 80%;
+		border-radius: 10px;
+	}
+	.modal {
+		position: fixed;
+		width: 100%;
+		inset: 0;
+		z-index: 2; 
+		background-color: rgba(0,0,0,0.3);
+		
+		display: grid; 
+		place-items: center;
 	}
 
-	h1 {
-		width: 100%;
+	@media screen and (min-width: 2560px) {
+		.silo_container {
+			padding: var(--padding);
+		}
 	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+	@media (-webkit-min-device-pixel-ratio: 2) and (min-width: 1680px) { 
+		.silo_container {
+			padding: var(--padding);
+		}
 	}
 </style>
