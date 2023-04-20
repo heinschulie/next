@@ -8,13 +8,13 @@
     import { page } from '$app/stores';
 	const livePage = $page; 
 
-	$: title = !!livePage.data.meta ? livePage.data.meta.title : "BrightRock";
-	$: image = !!livePage.data.meta ? livePage.data.meta.image : "https://changeexchange.co.za/assets/lovechange.png";
-	$: description = !!livePage.data.meta ? livePage.data.meta.description : "Needs-matched insurance that changes as your life changes.";
-	$: author = !!livePage.data.meta ? livePage.data.meta.author : "BrightRock";
-	$: date = !!livePage.data.meta ? livePage.data.meta.date : new Date().toDateString();
-	$: type = !!livePage.data.meta ? livePage.data.meta.type : "Article";
-	$: url = !!livePage.data.meta ? livePage.data.meta.url : "https://brightrock.co.za";
+	$: title = !!livePage.data.meta ? livePage.data.meta.title.replace(/<p>/g, '').replace(/<\/p>/g, '') : "BrightRock";
+	$: image = !!livePage.data.meta ? livePage.data.meta.image.replace(/<p>/g, '').replace(/<\/p>/g, '') : "https://changeexchange.co.za/assets/lovechange.png";
+	$: description = !!livePage.data.meta ? livePage.data.meta.description.replace(/<p>/g, '').replace(/<\/p>/g, '') : "Needs-matched insurance that changes as your life changes.";
+	$: author = !!livePage.data.meta ? livePage.data.meta.author.replace(/<p>/g, '').replace(/<\/p>/g, '') : "BrightRock";
+	$: date = !!livePage.data.meta ? livePage.data.meta.date.replace(/<p>/g, '').replace(/<\/p>/g, '') : new Date().toDateString();
+	$: type = !!livePage.data.meta ? livePage.data.meta.type.replace(/<p>/g, '').replace(/<\/p>/g, '') : "Article";
+	$: url = !!livePage.data.meta ? livePage.data.meta.url.replace(/<p>/g, '').replace(/<\/p>/g, '') : "https://brightrock.co.za";
 
 	import '../styles.css';
 </script>
