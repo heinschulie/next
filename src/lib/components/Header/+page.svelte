@@ -20,7 +20,6 @@
 <header>
 	
 	<a class="logo" href="/">
-		<!-- <Logo width={75} fill="var(--color-foreground)" /> -->
 		<Logo width={100} fill="var(--color-foreground)" />
 	</a>
 
@@ -36,12 +35,12 @@
 	<nav class="nav-links">
 		<ul>
 			<li>
-				<a name="#">
+				<div class="p_a">
 					What we offer
 					<span class="chevron">
 						<Chevron rotation={270}/>
 					</span>
-				</a>
+				</div>
 				<ul class="sub-menu">
 					<li class:active={$page.url.pathname === '/individual-life-cover'}><a data-sveltekit-preload-data="tap" href="/individual-life-cover">Individual life cover</a></li>
 					<li class:active={$page.url.pathname === '/group-risk-cover'}><a data-sveltekit-preload-data="tap" href="/group-risk-cover">Group risk cover</a></li>
@@ -291,7 +290,7 @@
 			overflow: visible;
 		}
 
-		nav a {
+		nav a, nav .p_a {
 			
 			width: 100%;
 			height: 100%;
@@ -335,7 +334,7 @@
 			background-color: var(--color-foreground);
 		}
 
-		li:hover a {
+		li:hover a, li:hover .p_a {
 			color: var(--color-background);
 		}
 

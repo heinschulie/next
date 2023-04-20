@@ -122,7 +122,7 @@ const main = async () => {
                 ...db.data 
             ]
             .filter(p => !!p && p.id) 
-            .sort((a,b) => new Date(b.date) - new Date(a.date))
+            .sort((a,b) => +(new Date(b.date)) - +(new Date(a.date)))
         };
 
         // const response = { data: [ ...newPosts.data, ...db.data ].filter(p => !!p && p.id) };
@@ -135,7 +135,7 @@ const main = async () => {
         // }
         
         const data = response.data
-        .sort((a, b) => new Date(b.date) - new Date(a))
+        .sort((a, b) => +(new Date(b.date)) - +(new Date(a)))
         .map(post => { 
             const ACF = post.ACF;
             const id = post.id;
