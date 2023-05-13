@@ -94,7 +94,7 @@
 	  <!-- GTM script + config -->
 	  <script
 		type="text/partytown"
-		src="https://www.googletagmanager.com/gtag/js?id=G-T2QV4HM0WX"></script>
+		src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
 	  <script type="text/partytown">
 		window.dataLayer = window.dataLayer || []
 	
@@ -103,7 +103,7 @@
 		}
 	
 		gtag('js', new Date())
-		gtag('config', 'G-T2QV4HM0WX', {
+		gtag('config', 'GTM-M644WT5', {
 		  page_path: window.location.pathname
 		})
 	  </script>
