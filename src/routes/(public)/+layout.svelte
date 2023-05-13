@@ -19,6 +19,7 @@
 	$: url = !!livePage.data.meta ? livePage.data.meta.url?.replace(/<p>/g, '').replace(/<\/p>/g, '') : "https://brightrock.co.za";
 
 	import '../styles.css';
+	import { browser } from '$app/environment';
 
 		const gtag = `
 		window.dataLayer = window.dataLayer || []
@@ -96,8 +97,10 @@
 		type="text/partytown"
 		src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
 	  <script type="text/partytown">
+
 		window.dataLayer = window.dataLayer || []
-	
+		window.console.log("hello this is schulie reporting to you live from the browser.")
+
 		function gtag() {
 		  dataLayer.push(arguments)
 		}
