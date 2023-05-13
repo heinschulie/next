@@ -102,21 +102,21 @@
 		console.log("hello this is schulie reporting to you live from the browser. 1")
 
 	</script>
-	  <script type="text/partytown">
+	<script type="text/partytown">
 
 		window.dataLayer = window.dataLayer || [];
 
 		console.log("hello this is schulie reporting to you live from the browser. 2");
 
 		function gtag() {
-		  dataLayer.push(arguments)
+			dataLayer.push(arguments)
 		}
-	
+
 		gtag('js', new Date())
 		gtag('config', 'GTM-M644WT5', {
-		  page_path: window.location.pathname
+			page_path: window.location.pathname
 		})
-	  </script>
+	</script>
 
 
 	<title>{ title }</title>
