@@ -21,18 +21,18 @@ const config = {
 	preprocess: preprocess({
 		preserve: ['partytown']
 	}),
-	vite: {
-		plugins: [
-			partytownVite({
-				// `dest` specifies where files are copied to in production
-				dest: path.join(
-					process.cwd(),
-					'static',
-					'~partytown'
-				)
-			})
-		]
-	}
+	// vite: {
+	// 	plugins: [
+	// 		partytownVite({
+	// 			// `dest` specifies where files are copied to in production
+	// 			dest: path.join(
+	// 				process.cwd(),
+	// 				'static',
+	// 				'~partytown'
+	// 			)
+	// 		})
+	// 	]
+	// }
 };
 
 export default config;
