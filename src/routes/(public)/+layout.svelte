@@ -137,7 +137,6 @@
 
 <Header />
 <main>
-	{ JSON.stringify(livePage.data) }
 	<slot />
 	<Form />
 	<Footer></Footer>
