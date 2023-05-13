@@ -34,20 +34,20 @@
 		`;
 		const googletagmanager = `https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5`;
 
-		// let scriptEl: any;
-		// onMount(
-		// 	() => {
-		// 		if (scriptEl) {
-		// 			scriptEl.textContent = partytownSnippet()
-		// 		}
-		// 	}
-		// )
+		let scriptEl: any;
+		onMount(
+			() => {
+				if (scriptEl) {
+					scriptEl.textContent = partytownSnippet()
+				}
+			}
+		)
 		
 </script>
 
 <svelte:head>
 
-	<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
 	<script>
 		window.dataLayer = window.dataLayer || []
 
@@ -59,7 +59,55 @@
 		gtag('config', 'GTM-M644WT5', {
 			page_path: window.location.pathname
 		})
-	</script>
+	</script> -->
+
+	<script>
+		// Config options
+		partytown = {
+		  forward: ['dataLayer.push'],
+		  resolveUrl: (url) => {
+			const baseUrl = 'https://spiffy-sprinkles-88adaf.netlify.app'
+			const siteUrl = `${baseUrl}/proxytown`; 
+	
+			if (url.hostname === 'www.googletagmanager.com') {
+			  const proxyUrl = new URL(`${siteUrl}/gtm`)
+	
+			  const gtmId = new URL(url).searchParams.get('id')
+			  gtmId && proxyUrl.searchParams.append('id', gtmId)
+	
+			  return proxyUrl
+			} else if (
+			  url.hostname === 'www.google-analytics.com'
+			) {
+			  const proxyUrl = new URL(`${siteUrl}/ga`)
+	
+			  return proxyUrl
+			}
+	
+			return url
+		  }
+		}
+	  </script>
+	  <!-- Insert `partytownSnippet` here -->
+	  <script bind:this={scriptEl}></script>
+	
+	  <!-- GTM script + config -->
+	  <script
+		type="text/partytown"
+		src="https://www.googletagmanager.com/gtag/js?id=G-T2QV4HM0WX"></script>
+	  <script type="text/partytown">
+		window.dataLayer = window.dataLayer || []
+	
+		function gtag() {
+		  dataLayer.push(arguments)
+		}
+	
+		gtag('js', new Date())
+		gtag('config', 'G-T2QV4HM0WX', {
+		  page_path: window.location.pathname
+		})
+	  </script>
+
 
 	<title>{ title }</title>
 	<meta property="og:determiner" content="The">
