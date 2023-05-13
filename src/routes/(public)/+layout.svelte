@@ -90,16 +90,23 @@
 		}
 	  </script>
 	  <!-- Insert `partytownSnippet` here -->
-	  <script bind:this={scriptEl}></script>
+	<script bind:this={scriptEl}>
+	console.log("hello this is schulie reporting to you live from the browser. 0");
+	</script>
 	
 	  <!-- GTM script + config -->
 	  <script
 		type="text/partytown"
-		src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
+		src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5">
+		
+		console.log("hello this is schulie reporting to you live from the browser. 1")
+
+	</script>
 	  <script type="text/partytown">
 
-		window.dataLayer = window.dataLayer || []
-		window.console.log("hello this is schulie reporting to you live from the browser.")
+		window.dataLayer = window.dataLayer || [];
+
+		console.log("hello this is schulie reporting to you live from the browser. 2");
 
 		function gtag() {
 		  dataLayer.push(arguments)
