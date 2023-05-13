@@ -1,5 +1,7 @@
 <script lang="ts">
-	// import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+  	import { partytownSnippet } from '@builder.io/partytown/integration'
+
 	import Header from '$lib/components/Header/+page.svelte';
 	import Footer from '$lib/components/Footer/+page.svelte';
 	import Form from '$lib/components/Form/+page.svelte';
@@ -17,6 +19,30 @@
 	$: url = !!livePage.data.meta ? livePage.data.meta.url?.replace(/<p>/g, '').replace(/<\/p>/g, '') : "https://brightrock.co.za";
 
 	import '../styles.css';
+
+		const gtag = `
+		window.dataLayer = window.dataLayer || []
+
+		function gtag() {
+			dataLayer.push(arguments)
+		}
+
+		gtag('js', new Date())
+		gtag('config', 'GTM-M644WT5', {
+			page_path: window.location.pathname
+		})
+		`;
+		const googletagmanager = `https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5`;
+
+		// let scriptEl: any;
+		// onMount(
+		// 	() => {
+		// 		if (scriptEl) {
+		// 			scriptEl.textContent = partytownSnippet()
+		// 		}
+		// 	}
+		// )
+		
 </script>
 
 <svelte:head>
@@ -54,6 +80,7 @@
 	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&amp;display=swap">
 
 </svelte:head>
+
 <Header />
 <main>
 	<slot />
