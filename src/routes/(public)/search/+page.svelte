@@ -1,7 +1,7 @@
 <script lang="ts">
 
 	import searchdata from '$lib/services/search.json'; 
-	import Card from '$lib/components/Card/+page.svelte';
+	import CardList from '$lib/components/CardList/+page.svelte';
 	
 	// let searchDATA = JSON.parse(searchdata); 
 	const highlightSearchTerms = false; 
@@ -45,13 +45,9 @@
 </svelte:head>
 
 <input class="search_input" placeholder="Type to start searching..." bind:value={text} >
-<div class="grid">
-	{#each results.slice(0,100) as post, idx}
-		<Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'}/>
-	{/each}
-</div>
+<CardList currentData={results} initiallyShowTillIndexOnDesktop={4} gridNumber={4} />
 <div class="links">
-	{#each results.slice(20) as post}
+	{#each results as post}
 		<a href={ `/media-centre/${post.slug}` }>{ post.slug }</a>
 	{/each}
 </div>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageServerData } from './$types';
-	import Card from '$lib/components/Card/+page.svelte';
+	import CardList from '$lib/components/CardList/+page.svelte';
 	export let data: PageServerData;
 </script>
 
@@ -20,13 +20,8 @@
     <p><strong>Play the bounce. Play the moment. #LoveChange</strong></p>
     <p>In rugby, and in life, the unpredictable is always just a play away, challenging even the best skill and preparation. A lucky bounce of the ball can swing the momentum of the game – for or against you. And the outcome is determined by how you respond to these game-changing situations. At BrightRock, we believe we should embrace them – and find the opportunities Change presents!In rugby, and in life, the unpredictable is always just a play away, challenging even the best skill and preparation. A lucky bounce of the ball can swing the momentum of the game – for or against you. And the outcome is determined by how you respond to these game-changing situations. At BrightRock, we believe we should embrace them – and find the opportunities Change presents!</p>
 </div>
-<div class="grid">
-  
-    {#each data.posts as post, idx}
-        <Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'}/>
-    {/each}
 
-</div>
+<CardList currentData={data.posts} initiallyShowTillIndexOnDesktop={3} gridNumber={3} />
 
 <style>
 
@@ -44,9 +39,9 @@
     .grid {
         --gridNumber: 1;
     }
-    .desktop_only {
+    /* .desktop_only {
         display: none;
-    }
+    } */
     @media screen and (min-width: 480px) {
        .grid {
             --gridNumber: 2;

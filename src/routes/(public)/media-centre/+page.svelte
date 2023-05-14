@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageServerData } from './$types';
-	import Card from '$lib/components/Card/+page.svelte';
+	import CardList from '$lib/components/CardList/+page.svelte';
 	export let data: PageServerData;  
 	
 	$: year = null; 
@@ -12,11 +12,9 @@
 </svelte:head>
 
 <div class="media_wrapper">
-	<div class="grid">
-		{#each currentData as post, idx}
-			<Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'} />
-		{/each}
-	</div>
+
+	
+
 	<div class="hello">
 		<h3>Categories</h3>
 		<a href="/categories/news">News</a>
@@ -39,19 +37,20 @@
             <option value="2022">2022</option>
         </select>
 	</div>
+
+	<div class="card_list">
+		<CardList {currentData} initiallyShowTillIndexOnDesktop={3} gridNumber={3} />
+	</div>
 </div>
 
 <style>
 	
-	.grid {
-		--gridNumber: 1;
-		grid-column: span 1;
-	}
-	.media_wrapper {
-		display: grid;
-		grid-template-columns: repeat(1, 1fr);
+	
+	.card_list {
+		grid-area: cardList;
 	}
 	.hello {
+		grid-area: hello;
 		width: 100%;
 		padding: var(--padding) calc(var(--padding) / 2);
 		order: -1;
@@ -66,14 +65,10 @@
 	}
 
 	@media screen and (min-width: 480px) {
-		.grid {
-			--gridNumber: 3;
-			grid-column: span 3;
-			padding-right: 0;
-		}
 		.media_wrapper {
 			display: grid;
-			grid-template-columns: repeat(4, 1fr);
+			grid-template-columns: 1fr 25%;
+			grid-template-areas: "cardList hello";
 		}
 		.hello {
 			width: 100%;

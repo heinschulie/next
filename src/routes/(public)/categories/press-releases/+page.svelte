@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageServerData } from './$types';
-	import Card from '$lib/components/Card/+page.svelte';
+	import CardList from '$lib/components/CardList/+page.svelte';
 	export let data: PageServerData;  
 </script>
 
@@ -12,8 +12,4 @@
 	<h1 class="heading">Here's the latest from the BrightRock team</h1>
 </div>
 
-<div class="grid">
-	{#each data.posts as post, idx}
-		<Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'}/>
-	{/each}
-</div>
+<CardList currentData={data.posts} initiallyShowTillIndexOnDesktop={4} gridNumber={4} />

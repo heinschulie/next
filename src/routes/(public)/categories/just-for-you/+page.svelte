@@ -1,7 +1,7 @@
 
 <script lang="ts">
 	import type { PageServerData } from './$types';
-	import Card from '$lib/components/Card/+page.svelte';
+	import CardList from '$lib/components/CardList/+page.svelte';
 	export let data: PageServerData;
 </script>
 
@@ -14,8 +14,4 @@
 	<p class="copy">Because we #LoveChange, at BrightRock, we want to help you make money decisions that reflect your life, your changing needs, and all the things that are important to you. Read our latest educational content below to help you learn more about money, life insurance and navigating life’s big change moments.</p>
 </div>
 
-<div class="grid">
-	{#each data.posts as post, idx}
-		<Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'} />
-	{/each}
-</div>
+<CardList currentData={data.posts} initiallyShowTillIndexOnDesktop={4} gridNumber={4} />

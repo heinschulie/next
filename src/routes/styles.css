@@ -412,6 +412,10 @@ form {
 /* end forms */
 
 
+.desktop_only {
+	display: none;
+}
+
 @media (prefers-color-scheme: dark) {
     /* :root {
         --is-dark-number: 1;  
@@ -495,6 +499,12 @@ form {
 		grid-auto-flow: column;
 		grid-auto-columns: 1fr;
 		padding: 80px;
+	}
+	.desktop_only {
+		display: initial;
+	}
+	.mobile_only {
+		display: none;
 	}
 }
 

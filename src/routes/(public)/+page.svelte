@@ -6,7 +6,7 @@
 	import Panel from '$lib/components/Panel/+page.svelte';
 	import Silo from '$lib/components/Silo/+page.svelte';
 
-	import Card from '$lib/components/Card/+page.svelte';
+	import CardList from '$lib/components/CardList/+page.svelte';
 	import IntersectionObserver from '$lib/components/IntersectionObserver/+page.svelte';
 	
 	// Note: --> the use of fade caused a pretty sinister routing bug that would place the 
@@ -60,7 +60,7 @@
 		<button slot="illustration" class="picture-set video" on:click={() => showVideo = true}>
 			<picture>
 				<source srcset="https://res.cloudinary.com/brightrock/image/upload/v1665382912/cxc/CXC_illustrations_for_new_NMMC_mbfgkn.webp" type="image/webp" />
-				<img fetchPriority="high" src="https://res.cloudinary.com/brightrock/image/upload/v1665382912/cxc/CXC_illustrations_for_new_NMMC_mbfgkn.png" alt="Graph showing cover gains." />
+				<img src="https://res.cloudinary.com/brightrock/image/upload/v1665382912/cxc/CXC_illustrations_for_new_NMMC_mbfgkn.png" alt="Graph showing cover gains." />
 			</picture>
 		</button>
 
@@ -185,11 +185,8 @@
 			<p>Because we #LoveChange, BrightRock aims to change the financial services industry for good. To see what’s new in our business and our industry, read the latest BrightRock media coverage and press releases below:</p>
 			<Button href="/media-centre"></Button>
 			
-			<div class="grid">
-				{#each data.posts.slice(0,4) as post, idx}
-					<Card { ...post } href={ `/media-centre/${post.slug}`} buttonCopy="Read now" imageLoading={idx === 0 ? 'priority' : 'lazy'} />
-				{/each}
-			</div>
+			<CardList currentData={data.posts.slice(0,4)} initiallyShowTillIndexOnDesktop={4} />
+
 		</div>
 
 
