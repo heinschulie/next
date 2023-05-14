@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
+    import { tick, createEventDispatcher, afterUpdate, onMount } from "svelte";
+
     /**
      * The HTML Element to observe.
-     * @type {HTMLElement}
      */
-    export let element = null;
+    export let element: HTMLElement;
     /**
      * Set to `true` to unobserve the element
      * after it intersects the viewport.
-     * @type {boolean}
      */
     export let once = false;
     /**
@@ -18,9 +18,8 @@
     /**
      * Specify the containing element.
      * Defaults to the browser viewport.
-     * @type {HTMLElement}
      */
-    export let root = null;
+    export let root: HTMLElement | undefined;
     /** Margin offset of the containing element. */
     export let rootMargin = "0px";
     /**
@@ -28,20 +27,12 @@
      * Value must be between 0 and 1.
      */
     export let threshold = 0.2;
-    /**
-     * Observed element metadata.
-     * @type {null | IntersectionObserverEntry}
-     */
-    export let entry = null;
-    /**
-     * `IntersectionObserver` instance.
-     * @type {null | IntersectionObserver}
-     */
-    export let observer = null;
-    import { tick, createEventDispatcher, afterUpdate, onMount } from "svelte";
+    export let entry: IntersectionObserverEntry | undefined;
+    export let observer: IntersectionObserver | undefined;
+
     const dispatch = createEventDispatcher();
-    let prevRootMargin = null;
-    let prevElement = null;
+    let prevRootMargin: any = null;
+    let prevElement: any = null;
     const initialize = () => {
       observer = new IntersectionObserver(
         (entries) => {
@@ -58,26 +49,26 @@
       return () => {
         if (observer) {
           observer.disconnect();
-          observer = null;
+          observer = undefined as unknown as IntersectionObserver;
         }
       };
     });
     afterUpdate(async () => {
-      if (entry !== null) {
+      if (entry !== undefined) {
         dispatch("observe", entry);
         if (entry.isIntersecting) {
           dispatch("intersect", entry);
-          if (once) observer.unobserve(element);
+          if (once) observer!.unobserve(element);
         }
       }
       await tick();
       if (element !== null && element !== prevElement) {
-        observer.observe(element);
-        if (prevElement !== null) observer.unobserve(prevElement);
+        observer!.observe(element);
+        if (prevElement !== null) observer!.unobserve(prevElement);
         prevElement = element;
       }
       if (prevRootMargin && rootMargin !== prevRootMargin) {
-        observer.disconnect();
+        observer!.disconnect();
         prevElement = null;
         initialize();
       }

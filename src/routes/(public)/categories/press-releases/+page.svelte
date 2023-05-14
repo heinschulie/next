@@ -13,7 +13,7 @@
 </div>
 
 <div class="grid">
-	{#each data.posts as post}
-		<Card { ...post } href={ `/media-centre/${post.slug}` } />
+	{#each data.posts as post, idx}
+		<Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'}/>
 	{/each}
 </div>

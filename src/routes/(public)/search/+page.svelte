@@ -46,8 +46,8 @@
 
 <input class="search_input" placeholder="Type to start searching..." bind:value={text} >
 <div class="grid">
-	{#each results.slice(0,100) as post}
-		<Card { ...post } href={ `/media-centre/${post.slug}` } />
+	{#each results.slice(0,100) as post, idx}
+		<Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'}/>
 	{/each}
 </div>
 <div class="links">

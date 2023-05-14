@@ -46,6 +46,7 @@
 	}
     .illustration {
         padding: var(--padding) 0 0;
+		aspect-ratio: 16/10;
     }
     .content {
         padding: var(--padding);

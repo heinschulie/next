@@ -88,8 +88,9 @@
 			return url
 		  }
 		}
-	  </script>
-	  <!-- Insert `partytownSnippet` here -->
+	</script>
+	  
+	<!-- Insert `partytownSnippet` here -->
 	<script bind:this={scriptEl}>
 	</script>
 	

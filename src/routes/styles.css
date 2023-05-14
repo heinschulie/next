@@ -253,7 +253,7 @@ p p {
 	height: 100%;
 	max-height: 60vh;
 	min-height: 60vh;
-	
+	aspect-ratio: 1;
 	/* exp */
 	/* max-height: 90vh; */
 }

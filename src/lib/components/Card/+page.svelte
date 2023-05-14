@@ -9,6 +9,7 @@
     export let href = "";
     export let buttonCopy = "Read now";
     export let truncate = true; 
+    export let imageLoading = 'lazy';
 
     $: imgType = illustration.includes('.jpg') ? 'jpg' : 'png'; 
     $: srcsetUrl = illustration.replace(`.${imgType}`, '');
@@ -36,7 +37,7 @@
         <div class="illustration">
             <picture>
                 <source srcset={ illustration } type="image/webp" />
-                <img loading="lazy" src={ illustration } alt={illustrationAlt} />
+                <img loading="{imageLoading}" src={ illustration } alt={illustrationAlt} />
             </picture>
         </div>
         

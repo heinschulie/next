@@ -22,8 +22,8 @@
 </div>
 <div class="grid">
   
-    {#each data.posts as post}
-        <Card { ...post } href={ `/media-centre/${post.slug}` } />
+    {#each data.posts as post, idx}
+        <Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'}/>
     {/each}
 
 </div>
@@ -38,6 +38,7 @@
     }
     .hero img {
         width: 100%;
+        aspect-ratio: 16/10;
     }
 
     .grid {
@@ -51,6 +52,11 @@
             --gridNumber: 2;
        }
     }
+    @media screen and (min-width: 750px) {
+       .grid {
+            --gridNumber: 2;
+       }
+    }
     @media screen and (min-width: 1000px) {
        .grid {
             --gridNumber: 3;
@@ -60,6 +66,10 @@
         }
         .mobile_only {
             display: none;
+        }
+        .hero img {
+            width: 100%;
+            aspect-ratio: 16/5;
         }
     }
 </style>

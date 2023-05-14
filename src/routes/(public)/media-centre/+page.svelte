@@ -13,8 +13,8 @@
 
 <div class="media_wrapper">
 	<div class="grid">
-		{#each currentData as post}
-			<Card { ...post } href={ `/media-centre/${post.slug}` } />
+		{#each currentData as post, idx}
+			<Card { ...post } href={ `/media-centre/${post.slug}` } imageLoading={idx === 0 ? 'priority' : 'lazy'} />
 		{/each}
 	</div>
 	<div class="hello">
