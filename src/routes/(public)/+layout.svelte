@@ -100,7 +100,7 @@
 	  <!-- GTM script + config -->
 	  <script
 		type="text/partytown"
-		src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW">
+		src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5">
 	
 	</script>
 	<script type="text/partytown">
