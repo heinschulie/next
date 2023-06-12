@@ -44,18 +44,14 @@
 	})(window,document,'script','dataLayer','GTM-MN78JMW');</script>
 	<!-- End Google Tag Manager -->
 		
-	<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-L07EDRYQHH"></script>
 	<script>
-		window.dataLayer = window.dataLayer || []
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
 
-		function gtag() {
-			dataLayer.push(arguments)
-		}
-
-		gtag('js', new Date())
-		gtag('config', 'GTM-M644WT5', {
-			page_path: window.location.pathname
-		})
+	gtag('config', 'G-L07EDRYQHH');
 	</script>
 
 	<!-- exp partytown -->
