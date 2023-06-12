@@ -59,7 +59,7 @@
 	</script> -->
 
 	<!-- exp partytown -->
-	<script>
+	<!-- <script>
 		partytown = {
 		  forward: ['dataLayer.push'],
 		  resolveUrl: (url) => {
@@ -104,7 +104,7 @@
 		gtag('config', 'GTM-MN78JMW', {
 			page_path: window.location.pathname
 		})
-	</script>
+	</script> -->
 	<!-- end partytown -->
 
 
