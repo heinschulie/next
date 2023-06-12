@@ -35,6 +35,9 @@
 		`;
 		const googletagmanager = `https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5`;
 
+
+		// --> spiffy sprinkles : GTM-MN78JMW 
+		// --> cs  				: GTM-M644WT5
 		let scriptEl: any;
 		onMount(
 			() => {
@@ -97,7 +100,7 @@
 	  <!-- GTM script + config -->
 	  <script
 		type="text/partytown"
-		src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5">
+		src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW">
 	
 	</script>
 	<script type="text/partytown">
