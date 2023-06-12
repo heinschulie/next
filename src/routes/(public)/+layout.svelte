@@ -32,6 +32,7 @@
 
 	onMount(() => {
 		if (scriptEl) {
+			console.log("LOADING SCRIPT EL! ", scriptEl);
 			scriptEl.textContent = partytownSnippet();
 		}
 	});
@@ -152,7 +153,7 @@
 	<script bind:this={scriptEl}></script>
 
 	{#if gtmDebug}
-		<script>
+		<!-- <script>
 			(function (w, d, s, l, i) {
 				w[l] = w[l] || [];
 				w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -163,9 +164,23 @@
 				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
 				f.parentNode.insertBefore(j, f);
 			})(window, document, 'script', 'dataLayer', 'GTM-MN78JMW');
+		</script> -->
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW"></script>
+		<script>
+			window.dataLayer = window.dataLayer || []
+
+			function gtag() {
+				dataLayer.push(arguments)
+			}
+
+			gtag('js', new Date())
+			gtag('config', 'GTM-MN78JMW', {
+				page_path: window.location.pathname
+			})
 		</script>
 	{:else}
-		<script type="text/partytown">
+		<!-- <script type="text/partytown">
 			(function (w, d, s, l, i) {
 				w[l] = w[l] || [];
 				w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -176,7 +191,22 @@
 				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
 				f.parentNode.insertBefore(j, f);
 			})(window, document, 'script', 'dataLayer', 'GTM-MN78JMW');
+		</script> -->
+
+		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW"></script>
+		<script type="text/partytown">
+			window.dataLayer = window.dataLayer || []
+
+			function gtag() {
+				dataLayer.push(arguments)
+			}
+
+			gtag('js', new Date())
+			gtag('config', 'GTM-MN78JMW', {
+				page_path: window.location.pathname
+			})
 		</script>
+		
 	{/if}
 
 
