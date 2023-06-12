@@ -166,7 +166,7 @@
 			})(window, document, 'script', 'dataLayer', 'GTM-MN78JMW');
 		</script>
 
-		<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW"></script>
+		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW"></script>
 		<script>
 			window.dataLayer = window.dataLayer || []
 
@@ -178,7 +178,7 @@
 			gtag('config', 'GTM-MN78JMW', {
 				page_path: window.location.pathname
 			})
-		</script>
+		</script> -->
 	{:else}
 		<script type="text/partytown">
 			(function (w, d, s, l, i) {
@@ -193,7 +193,7 @@
 			})(window, document, 'script', 'dataLayer', 'GTM-MN78JMW');
 		</script>
 
-		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW"></script>
+		<!-- <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW"></script>
 		<script type="text/partytown">
 			window.dataLayer = window.dataLayer || []
 
@@ -205,7 +205,7 @@
 			gtag('config', 'GTM-MN78JMW', {
 				page_path: window.location.pathname
 			})
-		</script>
+		</script> -->
 		
 	{/if}
 
