@@ -112,7 +112,7 @@
 		}
 
 		gtag('js', new Date())
-		gtag('config', 'GTM-M644WT5', {
+		gtag('config', 'GTM-MN78JMW', {
 			page_path: window.location.pathname
 		})
 	</script>
