@@ -29,15 +29,15 @@
 		}
 
 		gtag('js', new Date())
-		gtag('config', 'G-L07EDRYQHH', {
+		gtag('config', 'GTM-M644WT5', {
 			page_path: window.location.pathname
 		})
 		`;
-		const googletagmanager = `https://www.googletagmanager.com/gtag/js?id=G-L07EDRYQHH`;
+		const googletagmanager = `https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5`;
 
 
 		// --> spiffy sprinkles : GTM-MN78JMW 
-		// --> cs  				: G-L07EDRYQHH
+		// --> cs  				: GTM-M644WT5
 		let scriptEl: any;
 		onMount(
 			() => {
@@ -51,7 +51,7 @@
 
 <svelte:head>
 
-	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-L07EDRYQHH"></script>
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
 	<script>
 		window.dataLayer = window.dataLayer || []
 
@@ -60,7 +60,7 @@
 		}
 
 		gtag('js', new Date())
-		gtag('config', 'G-L07EDRYQHH', {
+		gtag('config', 'GTM-M644WT5', {
 			page_path: window.location.pathname
 		})
 	</script> -->
