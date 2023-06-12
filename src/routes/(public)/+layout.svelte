@@ -44,7 +44,7 @@
 	})(window,document,'script','dataLayer','GTM-MN78JMW');</script>
 	<!-- End Google Tag Manager -->
 		
-	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-M644WT5"></script>
 	<script>
 		window.dataLayer = window.dataLayer || []
 
@@ -56,7 +56,7 @@
 		gtag('config', 'GTM-M644WT5', {
 			page_path: window.location.pathname
 		})
-	</script> -->
+	</script>
 
 	<!-- exp partytown -->
 	<!-- <script>
