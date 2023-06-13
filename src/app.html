@@ -38,8 +38,13 @@
 						// 	gtmId && proxyUrl.searchParams.append('id', gtmId);
 
 						// 	return proxyUrl;
-						// } else 
-						if (url.hostname === 'www.google-analytics.com') {
+						// } 
+						if (url.hostname.includes('www.googletagmanager.com/debug')) {
+							const proxyUrl = new URL(`${siteUrl}/gtm/debug.js`);
+
+							return proxyUrl;
+						}
+						else if (url.hostname === 'www.google-analytics.com') {
 							const proxyUrl = new URL(`${siteUrl}/ga`);
 
 							return proxyUrl;
