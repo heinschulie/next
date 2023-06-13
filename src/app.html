@@ -5,6 +5,40 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
+
+		<script>
+			function checkIfGoogleTagAssistantIsEnabled() {
+				const urlParams = new URLSearchParams(window.location.search);
+				const gtm_debug = urlParams.get('gtm_debug');
+	
+				return !!gtm_debug;
+			}
+	
+			document.addEventListener('DOMContentLoaded', function() {
+				var scriptType = checkIfGoogleTagAssistantIsEnabled() ? 'text/javascript' : 'text/partytown';
+				var script = document.createElement('script');
+				script.type = scriptType;
+				script.async = true;
+				script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-MN78JMW';
+				var firstScript = document.getElementsByTagName('script')[0];
+				firstScript.parentNode.insertBefore(script, firstScript);
+			});
+		</script>
+		<script type="text/javascript" src="/~partytown/partytown.js"></script>
+		<script>
+				partytown = {
+					forward: ['dataLayer.push'],
+				};
+		</script>
+		<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-L07EDRYQHH"></script>
+		<script type="text/partytown">
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+		
+				gtag('config', 'G-L07EDRYQHH');
+		</script>
+		
 	</head>
 	<body data-sveltekit-preload-data="tap">
 		
