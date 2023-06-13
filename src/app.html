@@ -31,6 +31,7 @@
 					forward: ['dataLayer.push'],
 					resolveUrl: (url) => {
 						const siteUrl = 'https://spiffy-sprinkles-88adaf.netlify.app';
+						
 						// if (url.hostname === 'www.googletagmanager.com') {
 						// 	const proxyUrl = new URL(`${siteUrl}/gtm/GTM-MN78JMW.js`);
 
@@ -39,7 +40,10 @@
 
 						// 	return proxyUrl;
 						// } 
-						if (url.hostname.includes('www.googletagmanager.com/debug')) {
+						if (url.host === 'www.googletagmanager.com' && url.pathname.startsWith('/debug')) {
+						// 	return `/your-proxy?forward=` + encodeURIComponent(url.href);
+						// }
+						// if (url.hostname.includes('www.googletagmanager.com/debug')) {
 							const proxyUrl = new URL(`${siteUrl}/gtm/debug.js`);
 
 							return proxyUrl;
