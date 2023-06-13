@@ -44,6 +44,7 @@
 						// 	return `/your-proxy?forward=` + encodeURIComponent(url.href);
 						// }
 						// if (url.hostname.includes('www.googletagmanager.com/debug')) {
+							console.log("PARANOIA! ", url); 
 							const proxyUrl = new URL(`${siteUrl}/gtm/debug.js`);
 
 							return proxyUrl;
