@@ -26,16 +26,6 @@
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
-	// $: ({ gtmDebug } = data);
-
-	// let scriptEl: HTMLScriptElement | null = null;
-
-	onMount(() => {
-		// if (scriptEl) {
-		// 	console.log("LOADING SCRIPT EL! ", scriptEl);
-		// 	scriptEl.textContent = partytownSnippet();
-		// }
-	});
 		
 </script>
 
