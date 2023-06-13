@@ -7,8 +7,9 @@
 	import Form from '$lib/components/Form/+page.svelte';
 	import Flyout from '$lib/components/Flyout/+page.svelte';
 
-	import Analytics from '$lib/components/Analytics/+page.svelte';
-	
+	// import Analytics from '$lib/components/Analytics/+page.svelte';
+	import AnalyticsAlt from '$lib/components/AnalyticsAlt/+page.svelte';
+
     import { page } from '$app/stores';
 	const livePage = $page; 
 
@@ -53,7 +54,8 @@
 
 </svelte:head>
 
-<Analytics></Analytics>
+<!-- <Analytics></Analytics> -->
+<AnalyticsAlt gtmId="GTM-MN78JMW"></AnalyticsAlt>
 
 <Header />
 <main>
