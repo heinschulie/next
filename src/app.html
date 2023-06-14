@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
 
-		<!-- <script>
+		<script>
 			function checkIfGoogleTagAssistantIsEnabled() {
 				const urlParams = new URLSearchParams(window.location.search);
 				const gtm_debug = urlParams.get('gtm_debug');
@@ -19,44 +19,46 @@
 				var script = document.createElement('script');
 				script.type = scriptType;
 				script.async = true;
-				script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-MN78JMW';
-				// script.src = 'https://spiffy-sprinkles-88adaf.netlify.app/gtm/GTM-MN78JMW.js';
+				// script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-MN78JMW';
+				script.src = 'https://spiffy-sprinkles-88adaf.netlify.app/gtm.js';
 				var firstScript = document.getElementsByTagName('script')[0];
 				firstScript.parentNode.insertBefore(script, firstScript);
 			});
-		</script> -->
+		</script>
 		<script type="text/javascript" src="/~partytown/partytown.js"></script>
-		<script>
+		<!-- <script>
 				partytown = {
 					forward: ['dataLayer.push'],
-					// resolveUrl: (url) => {
-					// 	const siteUrl = 'https://spiffy-sprinkles-88adaf.netlify.app';
+					resolveUrl: (url) => {
+						const siteUrl = 'https://spiffy-sprinkles-88adaf.netlify.app';
 						
-					// 	if (url.hostname === 'www.googletagmanager.com') {
-					// 		const proxyUrl = new URL(`${siteUrl}/gtm/GTM-MN78JMW.js`);
+						if (url.hostname === 'www.googletagmanager.com') {
+							const proxyUrl = new URL(`${siteUrl}/gtm/GTM-MN78JMW.js`);
 
-					// 		const gtmId = new URL(url).searchParams.get('id');
-					// 		gtmId && proxyUrl.searchParams.append('id', gtmId);
+							const gtmId = new URL(url).searchParams.get('id');
+							gtmId && proxyUrl.searchParams.append('id', gtmId);
 
-					// 		return proxyUrl;
-					// 	} 
-					// 	else if (url.hostname === 'www.google-analytics.com') {
-					// 		const proxyUrl = new URL(`${siteUrl}/ga`);
+							return proxyUrl;
+						} 
+						else if (url.hostname === 'www.google-analytics.com') {
+							const proxyUrl = new URL(`${siteUrl}/ga`);
 
-					// 		return proxyUrl;
-					// 	}
-					// 	return url;
-					// }
+							return proxyUrl;
+						}
+						return url;
+					}
 				};
-		</script>
+		</script> -->
 
 		<!-- <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW"></script> -->
 		<!-- Google Tag Manager -->
-		<script type="text/partytown">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		
+		<!-- <script type="text/partytown">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-MN78JMW');</script>
+		})(window,document,'script','dataLayer','GTM-MN78JMW');</script> -->
+
 		<!-- End Google Tag Manager -->
 
 		<!-- <script type="text/partytown">
