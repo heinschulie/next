@@ -6,10 +6,7 @@
 	import Footer from '$lib/components/Footer/+page.svelte';
 	import Form from '$lib/components/Form/+page.svelte';
 	import Flyout from '$lib/components/Flyout/+page.svelte';
-
-	// import Analytics from '$lib/components/Analytics/+page.svelte';
-	import AnalyticsAlt from '$lib/components/AnalyticsAlt/+page.svelte';
-
+	
     import { page } from '$app/stores';
 	const livePage = $page; 
 
@@ -29,6 +26,16 @@
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
+	$: ({ gtmDebug } = data);
+
+	let scriptEl: HTMLScriptElement | null = null;
+
+	onMount(() => {
+		if (scriptEl) {
+			console.log("LOADING SCRIPT EL! ", scriptEl);
+			scriptEl.textContent = partytownSnippet();
+		}
+	});
 		
 </script>
 
@@ -52,10 +59,54 @@
 	
 	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&amp;display=swap">
 
+	<!-- <script>
+		partytown = {
+			forward: ['dataLayer.push'],
+			resolveUrl: (url) => {
+				const siteUrl = 'https://spiffy-sprinkles-88adaf.netlify.app';
+				if (url.hostname === 'www.googletagmanager.com') {
+					const proxyUrl = new URL(`${siteUrl}/gtm`);
+
+					const gtmId = new URL(url).searchParams.get('id');
+					gtmId && proxyUrl.searchParams.append('id', gtmId);
+
+					return proxyUrl;
+				} else if (url.hostname === 'www.google-analytics.com') {
+					const proxyUrl = new URL(`${siteUrl}/ga`);
+
+					return proxyUrl;
+				}
+				return url;
+			}
+		};
+	</script> -->
+
+	<script bind:this={scriptEl}></script>
+
+	<script type="text/partytown">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-MN78JMW');</script>
+
+	<!-- <script
+		type="text/partytown"
+		src="https://www.googletagmanager.com/gtag/js?id=GTM-MN78JMW"></script>
+	<script type="text/partytown">
+		window.dataLayer = window.dataLayer || []
+
+		function gtag() {
+		dataLayer.push(arguments)
+		}
+
+		gtag('js', new Date())
+		gtag('config', 'GTM-MN78JMW', {
+		page_path: window.location.pathname
+		})
+	</script> -->
+
 </svelte:head>
 
-<!-- <Analytics></Analytics> -->
-<!-- <AnalyticsAlt gtmId="GTM-MN78JMW"></AnalyticsAlt> -->
 
 <Header />
 <main>
