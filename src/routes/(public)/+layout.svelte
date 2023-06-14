@@ -59,35 +59,35 @@
 	
 	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&amp;display=swap">
 
-	<script>
+	<!-- <script>
 		partytown = {
 			forward: ['dataLayer.push'],
-			// resolveUrl: (url) => {
-			// 	const siteUrl = 'https://spiffy-sprinkles-88adaf.netlify.app';
-			// 	if (url.hostname === 'www.googletagmanager.com') {
-			// 		const proxyUrl = new URL(`${siteUrl}/gtm`);
+			resolveUrl: (url) => {
+				const siteUrl = 'https://spiffy-sprinkles-88adaf.netlify.app';
+				if (url.hostname === 'www.googletagmanager.com') {
+					const proxyUrl = new URL(`${siteUrl}/gtm`);
 
-			// 		const gtmId = new URL(url).searchParams.get('id');
-			// 		gtmId && proxyUrl.searchParams.append('id', gtmId);
+					const gtmId = new URL(url).searchParams.get('id');
+					gtmId && proxyUrl.searchParams.append('id', gtmId);
 
-			// 		return proxyUrl;
-			// 	} else if (url.hostname === 'www.google-analytics.com') {
-			// 		const proxyUrl = new URL(`${siteUrl}/ga`);
+					return proxyUrl;
+				} else if (url.hostname === 'www.google-analytics.com') {
+					const proxyUrl = new URL(`${siteUrl}/ga`);
 
-			// 		return proxyUrl;
-			// 	}
-			// 	return url;
-			// }
+					return proxyUrl;
+				}
+				return url;
+			}
 		};
-	</script>
+	</script> -->
 
-	<script bind:this={scriptEl}></script>
+	<!-- <script bind:this={scriptEl}></script> -->
 
-	<script type="text/partytown">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	<!-- <script type="text/partytown">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-MN78JMW');</script>
+		})(window,document,'script','dataLayer','GTM-MN78JMW');</script> -->
 
 	<!-- <script
 		type="text/partytown"
