@@ -18,10 +18,14 @@ export async function GET({ url }) {
 
 	// return fetch(newUrl);
 
-	const res = await fetch(newUrl);
-	console.log('I HAVE YOUR GOOD CLOTHES IN THE CAR: ', res);
+	try {
+		const res = await fetch(newUrl);
+		console.log('I HAVE YOUR GOOD CLOTHES IN THE CAR: ', res);
 
-	return res;
+		return res;
+	} catch (error) {
+		return json({ error }, { status: 500 });
+	}
 
 	// const posts = await res.json();
 	// console.log('ALL MY FINGERNAILS ARE PAINTED: ', posts);
