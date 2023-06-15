@@ -16,10 +16,12 @@ export async function GET({ url }) {
 		}
 	}
 
-	const res = await fetch(newUrl);
-	console.log('I HAVE YOUR GOOD CLOTHES IN THE CAR: ', res);
-	const posts = await res.json();
-	console.log('ALL MY FINGERNAILS ARE PAINTED: ', posts);
+	return fetch(newUrl);
 
-	return json(posts, { status: 200 });
+	// const res = await fetch(newUrl);
+	// console.log('I HAVE YOUR GOOD CLOTHES IN THE CAR: ', res);
+	// const posts = await res.json();
+	// console.log('ALL MY FINGERNAILS ARE PAINTED: ', posts);
+
+	// return json(posts, { status: 200 });
 }
