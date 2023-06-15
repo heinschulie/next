@@ -31,7 +31,7 @@
 			partytown = {
 				forward: ['dataLayer.push'],
 				resolveUrl: (url) => {
-					
+					console.log("firing: ", url.href);
 					if (url.hostname === "connect.facebook.net") {
 						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=facebook');
 					} else if (url.hostname === "static.ads-twitter.com") {
