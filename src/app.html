@@ -32,10 +32,9 @@
 				resolveUrl: (url) => {
 					console.log("SAY SOMETHING PRETTY: ", url.hostname); 
 					if (url.hostname === "connect.facebook.net") {
-						console.log("WHY DID YOU LISTEN TO THE MAN: ", url.hostname); 
-						var proxyUrl = new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=facebook');
-						// proxyUrl.searchParams.append('url', url.href);
-						return proxyUrl;
+						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=facebook');
+					} else if (url.hostname === "static.ads-twitter.com") {
+						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=twitter');
 					}
 					return url;
 				},
