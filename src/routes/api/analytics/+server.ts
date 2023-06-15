@@ -12,14 +12,17 @@ export async function GET({ url }) {
 			break;
 		}
 		default: {
-			return json({}, { status: 401 });
+			newUrl = url;
 		}
 	}
 
-	return fetch(newUrl);
+	// return fetch(newUrl);
 
-	// const res = await fetch(newUrl);
-	// console.log('I HAVE YOUR GOOD CLOTHES IN THE CAR: ', res);
+	const res = await fetch(newUrl);
+	console.log('I HAVE YOUR GOOD CLOTHES IN THE CAR: ', res);
+
+	return res;
+
 	// const posts = await res.json();
 	// console.log('ALL MY FINGERNAILS ARE PAINTED: ', posts);
 
