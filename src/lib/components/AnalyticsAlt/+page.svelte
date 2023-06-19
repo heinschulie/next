@@ -95,7 +95,7 @@
 <svelte:head>
 
     <script type='text/partytown' bind:this={scriptElGTM}></script>
-    <script type='text/partytown' bind:this={scriptElConfig}></script>
+    <script bind:this={scriptElConfig}></script>
     <script bind:this={scriptElPT}></script>
     <!-- <script type="text/javascript" src="/~partytown/partytown.js"></script> -->
 </svelte:head>
