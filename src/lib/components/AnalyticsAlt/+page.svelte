@@ -78,7 +78,7 @@
         }
 
         if (scriptElConfig) {
-            scriptElConfig.type = 'text/partytown';
+            scriptElConfig.type = 'text/javascript';
             scriptElConfig.async = true;
             scriptElConfig.textContent = ptScriptContent;
         }
