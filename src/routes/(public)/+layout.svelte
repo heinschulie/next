@@ -46,7 +46,7 @@
 
 </svelte:head>
 
-<!-- <Analytics siteUrl="https://spiffy-sprinkles-88adaf.netlify.app" /> -->
+<Analytics siteUrl="https://spiffy-sprinkles-88adaf.netlify.app" />
 <Header />
 <main>
 	<slot />
