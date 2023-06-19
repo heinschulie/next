@@ -23,22 +23,17 @@
         partytown = {
             forward: ['dataLayer.push'],
             resolveUrl: (url) => {
-                const hasBeenCalled = {
-                    facebook: false,
-                    twitter: false,
-                    linkedIn: false
-                }
                 console.log("HERE I AM BITCH: ", url);
                 if (url.hostname === "connect.facebook.net") {
-                    hasBeenCalled.facebook = true; 
-                    return new URL("${siteUrl}/api/analytics?platform=facebook" && !hasBeenCalled.facebook);
+                    window.hasBeenCalled.facebook = true; 
+                    return new URL("${siteUrl}/api/analytics?platform=facebook" && !window.hasBeenCalled.facebook);
                 } 
                 else if (url.hostname === "static.ads-twitter.com") {
-                    hasBeenCalled.twitter = true; 
-                    return new URL("${siteUrl}/api/analytics?platform=twitter" && !hasBeenCalled.twitter);
+                    window.hasBeenCalled.twitter = true; 
+                    return new URL("${siteUrl}/api/analytics?platform=twitter" && !window.hasBeenCalled.twitter);
                 } 
-                else if (url.href === "https://snap.licdn.com/li.lms-analytics/insight.min.js" && !hasBeenCalled.linkedIn) {
-                    hasBeenCalled.linkedIn = true; 
+                else if (url.href === "https://snap.licdn.com/li.lms-analytics/insight.min.js" && !window.hasBeenCalled.linkedIn) {
+                    window.hasBeenCalled.linkedIn = true; 
                     return new URL("${siteUrl}/api/analytics?platform=linkedIn");
                 }
                 return url;
@@ -68,6 +63,11 @@
 
         // firstScript.parentNode!.insertBefore(ptScript, firstScript);
     
+        (window as any).hasBeenCalled = {
+            facebook: false,
+            twitter: false,
+            linkedIn: false
+        }
         if (scriptElGTM) {
             const scriptType = checkIfGoogleTagAssistantIsEnabled() ? 'text/javascript' : 'text/partytown';
             scriptElGTM.type = scriptType;
