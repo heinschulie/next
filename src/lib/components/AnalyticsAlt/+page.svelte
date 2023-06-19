@@ -20,14 +20,14 @@
     }
 
     const ptScriptContent = `
-        const hasBeenCalled = {
-            facebook: false,
-            twitter: false,
-            linkedIn: false
-        }
         partytown = {
             forward: ['dataLayer.push'],
             resolveUrl: (url) => {
+                const hasBeenCalled = {
+                    facebook: false,
+                    twitter: false,
+                    linkedIn: false
+                }
                 console.log("HERE I AM BITCH: ", url);
                 if (url.hostname === "connect.facebook.net") {
                     hasBeenCalled.facebook = true; 
