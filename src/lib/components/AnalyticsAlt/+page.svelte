@@ -28,6 +28,7 @@
         partytown = {
             forward: ['dataLayer.push'],
             resolveUrl: (url) => {
+                console.log("HERE I AM BITCH: ", url);
                 if (url.hostname === "connect.facebook.net") {
                     hasBeenCalled.facebook = true; 
                     return new URL("${siteUrl}/api/analytics?platform=facebook" && !hasBeenCalled.facebook);
