@@ -1,61 +1,51 @@
-<script>
-
-	import { onMount } from 'svelte';
-	/** @type {string} gtmId - GTM ID 'GTM-F00BARS'. */
-	export let gtmId = '';
-	/** @type {(Object[]|Object)} [gtmDataPoints=[]] - Array or single object of custom data points for dataLayer.*/
-	export let gtmDataPoints = [];
-	/** @type {number} [timeout] - The number of milliseconds to timeout intiating loading the GTM script from Google */
-	export let timeout = 0;
-	/** @type {boolean} [dev=false] - Set to true to give errors */
-	export let dev = false;
-	let scriptSrc = "";
-
-	/** getFunctionScriptElementFromInitGtm - Sets global dataLayer on Window Object.
-	  * @param {(Object[]|Object)} [customDataPoints=[]] - Array or single object of custom data points for dataLayer.
-	  * @param {Object} [customDataPoints[]] - Custom data point Object.
-	  * @param {string} [customDataPoints[][]] - Custom data point property.
-	  * @param {Object} [globalObject=window] – E.g. a reference to the Window Object (window).
-	  * @returns {getFunctionScriptElementFromInitGtm~getScriptSrcForGtm} - function. */
-	    const getScriptSrcFromInitGtm = ( customDataPoints = [], globalObject = window ) => {
-            const requiredDataPoint = {
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js',
-            };
-            /** getScriptSrcForGtm - Returns script src.
-             *  @param {string} gtmId - GTM ID 'GTM-F00BARS'. */
-            const getScriptSrcForGtm = ( gtmId ) => {
-                if (!dev && (typeof gtmId !== 'string' || !gtmId.length)) {
-                    return;
-                } else if (typeof gtmId !== 'string' || !gtmId.length) {
-                    console.error('Google Tag Manager.', 'Missing/wrong `gtmId`.');
-                } else {
-                    return `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
-                }
-            }
-            try {
-                const dataLayer = [requiredDataPoint].concat(customDataPoints);
-                /* Get/set global dataLayer on global Object (e.g., `window`).
-                * Custom data points should be set before GTM script loads. */
-                globalObject['dataLayer'] = globalObject['dataLayer'] ?
-                    [...globalObject['dataLayer'], ...dataLayer]
-                    : dataLayer;
-            } catch (error) {
-                if (!dev) console.error('Google Tag Manager.', error);
-            } finally {
-                return getScriptSrcForGtm; // …no matter what, for no error.
-            }
-        }
-	onMount( () => {
-		if (!timeout) scriptSrc = getScriptSrcFromInitGtm( gtmDataPoints )( gtmId );
-		else setTimeout(() => {
-			scriptSrc = getScriptSrcFromInitGtm( gtmDataPoints )( gtmId );
-		}, timeout);
-	});
+<script lang="ts">
+    export let siteUrl = "https://spiffy-sprinkles-88adaf.netlify.app"; 
+    // export let gtm_code = ""; 
 </script>
 
 <svelte:head>
-	{#if scriptSrc}
-		<script src="{scriptSrc}" defer></script>
-	{/if}
+	<script>
+        function checkIfGoogleTagAssistantIsEnabled() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const gtm_debug = urlParams.get('gtm_debug');
+            return !!gtm_debug;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const scriptType = checkIfGoogleTagAssistantIsEnabled() ? 'text/javascript' : 'text/partytown';
+            const script = document.createElement('script');
+            script.type = scriptType;
+            script.async = true;
+            script.src = `${siteUrl}/gtm.js`;
+            const firstScript = document.getElementsByTagName('script')[0];
+            firstScript.parentNode.insertBefore(script, firstScript);
+        });
+    </script>
+    <script type="text/javascript" src="/~partytown/partytown.js"></script>
+    <script>
+        // Forward the necessary functions to the web worker layer
+        const hasBeenCalled = {
+            facebook: false,
+            twitter: false,
+            linkedIn: false
+        }
+        partytown = {
+            forward: ['dataLayer.push'],
+            resolveUrl: (url) => {
+                if (url.hostname === "connect.facebook.net") {
+                    hasBeenCalled.facebook = true; 
+                    return new URL(`${siteUrl}/api/analytics?platform=facebook` && !hasBeenCalled.facebook);
+                } 
+                else if (url.hostname === "static.ads-twitter.com") {
+                    hasBeenCalled.twitter = true; 
+                    return new URL(`${siteUrl}/api/analytics?platform=twitter` && !hasBeenCalled.twitter);
+                } 
+                else if (url.href === "https://snap.licdn.com/li.lms-analytics/insight.min.js" && !hasBeenCalled.linkedIn) {
+                    hasBeenCalled.linkedIn = true; 
+                    return new URL(`${siteUrl}/api/analytics?platform=linkedIn`);
+                }
+                return url;
+            },
+        }
+    </script>
 </svelte:head>
