@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
 
-		<!-- <script>
+		<script>
 			function checkIfGoogleTagAssistantIsEnabled() {
 				const urlParams = new URLSearchParams(window.location.search);
 				const gtm_debug = urlParams.get('gtm_debug');
@@ -33,23 +33,23 @@
 			}
 			partytown = {
 				forward: ['dataLayer.push'],
-				resolveUrl: (url) => {
+				resolveUrl: ((url) => {
 					if (url.hostname === "connect.facebook.net") {
-						hasBeenCalled.facebook = true; 
-						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=facebook' && !hasBeenCalled.facebook);
+						this.hasBeenCalled.facebook = true; 
+						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=facebook' && !this.hasBeenCalled.facebook);
 					} 
 					else if (url.hostname === "static.ads-twitter.com") {
-						hasBeenCalled.twitter = true; 
-						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=twitter' && !hasBeenCalled.twitter);
+						this.hasBeenCalled.twitter = true; 
+						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=twitter' && !this.hasBeenCalled.twitter);
 					} 
-					else if (url.href === "https://snap.licdn.com/li.lms-analytics/insight.min.js" && !hasBeenCalled.linkedIn) {
-						hasBeenCalled.linkedIn = true; 
+					else if (url.href === "https://snap.licdn.com/li.lms-analytics/insight.min.js" && !this.hasBeenCalled.linkedIn) {
+						this.hasBeenCalled.linkedIn = true; 
 						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=linkedIn');
 					}
 					return url;
-				},
+				}).bind({ hasBeenCalled }),
 			}
-		</script> -->
+		</script>
 	
 	</head>
 	<body data-sveltekit-preload-data="tap">	
