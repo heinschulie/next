@@ -28,7 +28,11 @@
 			partytown = {
 				forward: ['dataLayer.push'],
 				resolveUrl: (url) => {
-					if (url.hostname === "connect.facebook.net") {
+					if (url.href === "https://www.google-analytics.com/analytics.js") {
+						console.log("DREAM I WAS LYING ON A HOSPITAL BED: ", url); 
+						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/analytics.js');
+					}
+					else if (url.hostname === "connect.facebook.net") {
 						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=facebook');
 					} 
 					else if (url.hostname === "static.ads-twitter.com") {
