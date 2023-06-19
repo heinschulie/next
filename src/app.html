@@ -25,44 +25,20 @@
 		</script>
 		<script type="text/javascript" src="/~partytown/partytown.js"></script>
 		<script>
-			// Forward the necessary functions to the web worker layer
-			const hasBeenCalled = {
-				facebook: false,
-				twitter: false,
-				linkedIn: false
-			}
 			partytown = {
 				forward: ['dataLayer.push'],
 				resolveUrl: (url) => {
 					if (url.hostname === "connect.facebook.net") {
-						
 						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=facebook');
 					} 
 					else if (url.hostname === "static.ads-twitter.com") {
-						
 						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=twitter');
 					} 
-					else if (url.href === "https://snap.licdn.com/li.lms-analytics/insight.min.js") {
-						
+					else if (url.hostname === "https://snap.licdn.com") {
 						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=linkedIn');
 					}
 					return url;
 				},
-				// resolveUrl: (url) => {
-				// 	if (url.hostname === "connect.facebook.net") {
-				// 		hasBeenCalled.facebook = true; 
-				// 		return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=facebook' && !hasBeenCalled.facebook);
-				// 	} 
-				// 	else if (url.hostname === "static.ads-twitter.com") {
-				// 		hasBeenCalled.twitter = true; 
-				// 		return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=twitter' && !hasBeenCalled.twitter);
-				// 	} 
-				// 	else if (url.href === "https://snap.licdn.com/li.lms-analytics/insight.min.js" && !hasBeenCalled.linkedIn) {
-				// 		hasBeenCalled.linkedIn = true; 
-				// 		return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=linkedIn');
-				// 	}
-				// 	return url;
-				// },
 			}
 		</script>
 	
