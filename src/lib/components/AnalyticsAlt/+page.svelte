@@ -83,8 +83,8 @@
         }
 
         if (scriptElPT) {
-            // scriptElPT.textContent = partytownSnippet()
-            scriptElPT.src = "/~partytown/partytown.js"; 
+            scriptElPT.textContent = partytownSnippet()
+            // scriptElPT.src = "/~partytown/partytown.js"; 
         }
       
     })
@@ -93,7 +93,7 @@
 
 <svelte:head>
 
-    <script bind:this={scriptElGTM}></script>
+    <script type='text/partytown' bind:this={scriptElGTM}></script>
     <script type='text/partytown' bind:this={scriptElConfig}></script>
     <script bind:this={scriptElPT}></script>
     <!-- <script type="text/javascript" src="/~partytown/partytown.js"></script> -->
