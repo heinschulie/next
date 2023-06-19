@@ -34,7 +34,7 @@
 					else if (url.hostname === "static.ads-twitter.com") {
 						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=twitter');
 					} 
-					else if (url.hostname === "https://snap.licdn.com") {
+					else if (url.href === "https://snap.licdn.com/li.lms-analytics/insight.min.js") {
 						return new URL('https://spiffy-sprinkles-88adaf.netlify.app/api/analytics?platform=linkedIn');
 					}
 					return url;
